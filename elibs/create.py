@@ -4,6 +4,6 @@ cursor = con.cursor()
 
 
 
-cursor.execute("INSERT INTO books (title, qty) VALUES (?, ?)", ("pascal", 21))
+cursor.execute("INSERT INTO books (title, qty) VALUES (?, ?)", ("Fisika", 21))
 
 con.commit()
