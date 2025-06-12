@@ -4,10 +4,11 @@ from connection import get_connection
 # produk_id = 2
 # jumlah_kurang = 3
 
+
 def book_lend(produk_id,jumlah_kurang):
+
     conn = get_connection()
     cursor = conn.cursor()
-
     cursor.execute("""
     UPDATE books
     SET qty = qty - ?
@@ -24,7 +25,24 @@ def book_lend(produk_id,jumlah_kurang):
     # Tutup koneksi
     conn.close()
 
+def list_book():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, title, qty FROM books")
+    data = cursor.fetchall()
+    print("\n📦 Available books")
+    for id, title, qty in data:
+        print(f"ID: {id} | Judul: {title} | Stok: {qty}")
+    conn.close()
+
 # Contoh penggunaan
 if __name__ == "__main__":
-    book_lend(2, 3)
+    list_book()
+    try:
+        produk_id = int(input("\nMasukkan ID produk yang ingin dipinjam: "))
+        jumlah_kurang = int(input("Masukkan jumlah yang ingin dipinjam: "))
+
+        book_lend(produk_id, jumlah_kurang)
+    except ValueError:
+        print("❌ Input tidak valid. Harus berupa angka.")
 
