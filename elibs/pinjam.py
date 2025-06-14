@@ -19,6 +19,7 @@ def book_lend(produk_id,jumlah_kurang):
         print("buku tidak mencukupi.")
     else:
         print("berhasil meminjam buku.")
+        
 
     conn.commit()
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     list_book()
     try:
         produk_id = int(input("\nMasukkan ID produk yang ingin dipinjam: "))
-        jumlah_kurang = int(input("Masukkan jumlah yang ingin dipinjam: "))
+        jumlah_kurang = 1
 
         book_lend(produk_id, jumlah_kurang)
     except ValueError:
